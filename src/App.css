@@ -244,5 +244,14 @@ font-size: 2rem;
             justify-content: center;
             row-gap: 30px;
         }
+
+        .navigation button{
+            padding: 10px 30px;
+            border: none;
+            border-radius: 0.4rem;
+            font-size: 20px;
+            font-weight: 500;
+            background-color: #ffffff;
+        }
    
   }
