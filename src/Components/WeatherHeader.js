@@ -99,8 +99,8 @@ function WeatherHeader() {
               </div>
               {/* Bottom description */}
               <Description weather={weather} units={units} />
-              <div>
-                <button onClick={Forecast}>Forecast</button>
+              <div className="navigation">
+                <button onClick={Forecast} >Forecast</button>
                 <button onClick={News}>Read News</button>
 
               </div>

@@ -4,6 +4,11 @@
     background-position: center;
     background-size: cover;
 }
+.app{
+    padding: 30px;
+    width: 100%;
+    height: 100vh;
+}
 
 .overlay {
     width: 100%;
@@ -62,6 +67,22 @@
     background-color: #ffffff;
 }
 
+.navigation{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+ justify-content: space-around;
+}
+
+.navigation button{
+    padding: 10px 50px;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #ffffff;
+}
+
 .headingPart h1{
 font-size: 2rem;
 }
@@ -78,10 +99,21 @@ font-size: 2rem;
     justify-content: center;
 }
 
+.date-time{
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+}
+
 .icon>h3 {
     font-size: 15px;
     font-weight: 200;
     text-transform: capitalize;
+}
+.temperature{
+    display: flex;
+    flex-direction: column;
+  row-gap: 70px;
 }
 
 .temperature>h1 {
@@ -102,6 +134,40 @@ font-size: 2rem;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 2.5rem;
+    color: #ffffff;
+}
+
+.forecastA{
+  width: 100%;
+}
+
+.forecastA p{
+    color: #ffffff;
+    font-size: medium;
+    text-transform: capitalize;
+}
+
+.horizontalLine{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.weatherData{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ffffff;
+}
+
+.table-col{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-time p{
     color: #ffffff;
 }
 
@@ -158,9 +224,14 @@ font-size: 2rem;
 
 @media only screen and (max-width: 600px) {
     .section__inputs input {
-       width: 10rem;
+       width: 8rem;
     
     }
+
+    .section__inputs button {
+        width: 4rem;
+    
+     }
 
     .headingPart h1{
         font-size: 1rem;

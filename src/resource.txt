@@ -3,3 +3,288 @@ api key = 0cd9cff4f5719c277fdf0415c370ee58
 api = https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
 news api = 2736697580e64109a631ee5e8973c3d6
+
+
+ <div className='App' style={{ backgroundImage: `url(${hotbg})` }}>
+            <div className='overlay'>
+                {(typeof data.main != 'undefined') ? (
+                    <WeatherForecast weatherData ={data}/>
+                ):(
+                    <div className='forcast'>
+                        <div className='Container'>
+                            <div className='subContainer '>
+                                <div >
+                                    <div className='headingPart'>
+                                        <div>
+                                            <h1>{`${weatherData.name},${weather.country}`}</h1>
+                                            <p>{`${weather.dt}`}</p>
+                                        </div>
+                                        <button>°F</button>
+                                    </div>
+                                    <div className='headingPart'>
+                                        <div>
+                                            <img src="./cloud-icon.png" alt="" />
+                                            <h1>52°C</h1>
+                                            <p>{`${weather.description}`}</p>
+                                        </div>
+                                        <div className='card'>
+                                            <div className="description__card-icon headingLeft">
+                                                <FaArrowDown />
+                                                <small>min</small>
+                                                <h2>{`${weather.temp_min.toFixed()}${tempUnits}`}</h2>
+                                            </div>
+                                            <div className="description__card-icon">
+                                                <FaArrowUp />
+                                                <small>max</small>
+                                                <h2>{`${weather.temp_max.toFixed()}${tempUnits}`}</h2>
+                                            </div>
+                                            <div className="description__card-icon">
+                                                <BiHappy />
+                                                <small>feels like</small>
+                                                <h2>{`${weather.feels_like.toFixed()}${tempUnits}`}</h2>
+                                            </div>
+                                            <div className="description__card-icon">
+                                                <MdCompress />
+                                                <small>Pressure</small>
+                                                <h2>{`${weather.pressure.toFixed()} ${pressureUnits}`}</h2>
+                                            </div>
+                                            <div className="description__card-icon">
+                                                <MdOutlineWaterDrop />
+                                                <small>Humidity</small>
+                                                <h2>{`${weather.humidity.toFixed()}${humidity}`}</h2>
+                                            </div>
+
+                                            <div className="description__card-icon">
+                                                <FaArrowDown />
+                                                <small>Wind speed</small>
+                                                <h2>{`${weather.temp_min.toFixed()}${windUnits}`}</h2>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div className='forecastData'>
+                                <div>
+                                    <h2>Fri</h2>
+                                    <img src="./cloud-icon.png" alt="" className='forcastIcon' />
+                                    <h3>Humidity: 1%</h3>
+                                    <h3>wind: 8 mph ⬆</h3>
+                                    <h3>wind: 15 mph ⬇</h3>
+                                    <h3>Feels like: 52°C</h3>
+
+                                </div>
+                                <div>
+                                    <h2>Sat</h2>
+                                    <img src="./cloud-icon.png" alt="" className='forcastIcon' />
+                                    <h3>Humidity: 1%</h3>
+                                    <h3>wind: 8 mph ⬆</h3>
+                                    <h3>wind: 15 mph ⬇</h3>
+                                    <h3>Feels like: 52°C</h3>
+
+                                </div>
+                                <div>
+                                    <h2>Sun</h2>
+                                    <img src="./cloud-icon.png" alt="" className='forcastIcon' />
+                                    <h3>Humidity: 1%</h3>
+                                    <h3>wind: 8 mph ⬆</h3>
+                                    <h3>wind: 15 mph ⬇</h3>
+                                    <h3>Feels like: 52°C</h3>
+
+                                </div>
+                                <div>
+                                    <h2>Mon</h2>
+                                    <img src="./cloud-icon.png" alt="" className='forcastIcon' />
+                                    <h3>Humidity: 1%</h3>
+                                    <h3>wind: 8 mph ⬆</h3>
+                                    <h3>wind: 15 mph ⬇</h3>
+                                    <h3>Feels like: 52°C</h3>
+
+                                </div>
+                                <div>
+                                    <h2>Tues</h2>
+                                    <img src="./cloud-icon.png" alt="" className='forcastIcon' />
+                                    <h3>Humidity: 1%</h3>
+                                    <h3>wind: 8 mph ⬆</h3>
+                                    <h3>wind: 15 mph ⬇</h3>
+                                    <h3>Feels like: 52°C</h3>
+
+                                </div>
+                                <div>
+                                    <h2>Wed</h2>
+                                    <img src="./cloud-icon.png" alt="" className='forcastIcon' />
+                                    <h3>Humidity: 1%</h3>
+                                    <h3>wind: 8 mph ⬆</h3>
+                                    <h3>wind: 15 mph ⬇</h3>
+                                    <h3>Feels like: 52°C</h3>
+
+                                </div>
+                                <div>
+                                    <h2>Fri</h2>
+                                    <img src="./cloud-icon.png" alt="" className='forcastIcon' />
+                                    <h3>Humidity: 1%</h3>
+                                    <h3>wind: 8 mph ⬆</h3>
+                                    <h3>wind: 15 mph ⬇</h3>
+                                    <h3>Feels like: 52°C</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+            </div>
+        </div>
+
+import { DateTime } from "luxon";
+
+
+const API_key = 'd5e69b5d7313d1ec87277475ab8ef86e';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+
+// const iconUrl = (iconId) => `https://openweathermap.org/img/wn/${iconId}@2x.png`
+
+const getForecastData =  (infoType, searchParams) => {
+    // const URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_key}`
+    const url = new URL(BASE_URL + "/" + infoType)
+    url.search = new URLSearchParams({ ...searchParams, appid: API_key})
+
+    console.log(url)
+    return fetch(url)
+    .then((res) => res.json())
+    .then((data) => data)
+};
+
+const formatCurrentWeather = (data) =>{
+const {
+   coord: {
+    lat,
+    lon
+} ,
+   main: {
+    temp, 
+    feels_like, 
+    humidity, 
+    temp_min,
+    temp_max,
+    pressure
+},
+   name,
+   dt,
+   sys: {
+    country, 
+    sunrise,
+    sunset},
+   weather,
+   wind: {speed}
+} = data
+
+const {main:details,icon } = weather[0]
+
+return{
+    lat,
+    lon,
+    temp,
+    feels_like,
+    humidity,
+    temp_min,
+    temp_max,
+    pressure,
+    name,
+    dt,
+    country,
+    sunrise,
+    sunset,
+    details,
+    icon,
+    speed
+}
+}
+
+const formatForecastWeather = (data) =>{
+    
+    let {timezone, daily, hourly} = data;
+    console.log(data);
+    if (!daily || !hourly) {
+        console.error('Invalid data structure');
+        return null; // Handle the error appropriately in your application
+      }
+    daily = daily.slice(1,6).map(d => {
+        return{
+           title: formatToLocalTime(d.dt, timezone,'ccc'),
+           temp: d.temp.day,
+           icon: d.weather[0].icon
+        }
+    });
+
+    hourly = hourly.slice(1,6).map(d => {
+        return{
+           title: formatToLocalTime(d.dt, timezone,'hh:mm a'),
+           temp: d.temp.day,
+           icon: d.weather[0].icon
+        }
+    });
+    return{timezone,daily,hourly}
+}
+
+const formattedForecast = async(searchParams) =>{
+const formattedCurrentWeather = await  getForecastData
+(
+    'weather', 
+    searchParams
+    ).then( formatCurrentWeather)
+
+    const {lat, lon} = formattedCurrentWeather;
+    const formattedForecastWeather = await getForecastData('onecall', {
+        lat,
+        lon,
+        exclude: 'current,minutetly,alerts', units: searchParams.units
+    }).then(formatForecastWeather)
+
+return {...formattedCurrentWeather, ...formattedForecastWeather}
+}
+
+const formatToLocalTime = (
+    secs,
+    zone, 
+    format = "cccc, dd LLL, yyyy' Local time:' hh:mm a") => DateTime.fromSeconds(secs).setZone(zone).toFormat(format)
+
+// export default getForecastData
+export default formattedForecast
+
+
+
+
+
+    //     const data = await fetch(URL)
+    //         .then((res) => res.json())
+    //         .then((data) => data);
+
+    // console.log(data);
+
+    // const { weather, main: { temp, feels_like, temp_min, temp_max, pressure, humidity }, wind: { speed }, sys: { country,sunrise,sunset }, name } = data;
+    // const { description, icon,dt} = weather[0]
+    // // const{dt_txt } = weather[0]
+    // return {
+    //     description, 
+    //     iconUrl: iconUrl(icon), 
+    //     temp, 
+    //     feels_like, 
+    //     temp_max, 
+    //     temp_min, 
+    //     pressure, 
+    //     humidity, 
+    //     speed, 
+    //     country, 
+    //     name,
+    //     sunrise,
+    //     sunset,
+    //     // dt_txt
+    //     dt
+    // }
+
+
+        

@@ -1,32 +1,104 @@
-const API_key = 'd5e69b5d7313d1ec87277475ab8ef86e'
+import { DateTime } from "luxon";
 
- const iconUrl = (iconId) => `https://openweathermap.org/img/wn/${iconId}@2x.png`
 
-const getForecastData = async (city, units = 'metric') => {
-    const URL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_key}&units=${units}`
-    const data = await fetch(URL)
-        .then((res) => res.json())
-        .then((data) => data);
+const API_key = '38d54820a460d2b097e05f513fcc2deb';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
-    console.log(data)
-    // destructuring to format data to find exactly the data you need
-    // const { weather, main: { temp, feels_like, temp_min, temp_max, pressure, humidity }, wind: { speed }, city: { name,country },dt_txt } = data;
-    // const { description, icon } = weather[0]
-    // return {
-    //     description, 
-    //     iconUrl: iconUrl(icon), 
-    //     temp, 
-    //     feels_like, 
-    //     temp_max, 
-    //     temp_min, 
-    //     pressure, 
-    //     humidity, 
-    //     speed, 
-    //     country, 
-    //     name,
-    //     dt_txt
-    //  }
+// const iconUrl = (iconId) => `https://openweathermap.org/img/wn/${iconId}@2x.png`
 
+const getWeatherData =  (infoType, searchParams) => {
+    // const URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_key}`
+    const url = new URL(BASE_URL + "/" + infoType)
+    url.search = new URLSearchParams({ ...searchParams, appid: API_key})
+
+    console.log(url)
+    return fetch(url)
+    .then((res) => res.json())
+    .then((data) => data)
+  
+};
+
+const formatCurrentWeather = (data) =>{
+const {
+   coord: {lat,lon} ,main: {
+    temp, 
+    feels_like, 
+    humidity, 
+    temp_min,
+    temp_max,
+},
+   name,
+   dt,
+   sys: {
+    country, 
+    sunrise,
+    sunset},
+   weather,
+   wind: {speed}
+} = data;
+
+const {main:details,icon } = weather[0]
+
+return{
+    lat,
+    lon,
+    temp,
+    feels_like,
+    humidity,
+    temp_min,
+    temp_max,
+    name,
+    dt,
+    country,
+    sunrise,
+    sunset,
+    details,
+    icon,
+    speed
+}
 }
 
-export default getForecastData
+const formatForecastWeather = (data) =>{
+    let {timezone, daily, hourly} = data;
+    // daily = daily.slice(1,6).map(d => {
+    //     return{
+    //        title: formatToLocalTime(d.dt, timezone,'ccc'),
+    //        temp: d.temp.day,
+    //        icon: d.weather[0].icon
+    //     }
+    // });
+
+    // hourly = hourly.slice(1,6).map(d => {
+    //     return({
+    //        title: formatToLocalTime(d.dt, timezone,'hh:mm a'),
+    //        temp: d.temp.day,
+    //        icon: d.weather[0].icon
+    // })
+    // });
+    // return{timezone,daily,hourly}
+}
+
+const getFormattedWeatherData = async(searchParams) =>{
+const formattedCurrentWeather = await  getWeatherData('weather',searchParams).then(formatCurrentWeather)
+
+    const {lat, lon} = formattedCurrentWeather;
+    const formattedForecastWeather = await getWeatherData("onecall", {
+        lat,
+        lon,
+        exclude: 'current,minutetly,alerts', units: searchParams.units
+    }).then(formatForecastWeather)
+// return formattedCurrentWeather
+ return {...formattedCurrentWeather, ...formattedForecastWeather}
+}
+
+const formatToLocalTime = (secs,zone, format = "cccc, dd LLL, yyyy' Local time:' hh:mm a") => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
+
+// export default getForecastData
+export default getFormattedWeatherData
+
+
+
+
+
+    
+ 
