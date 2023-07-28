@@ -1,3 +1,5 @@
 api key = 0cd9cff4f5719c277fdf0415c370ee58
 
 api = https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+news api = 2736697580e64109a631ee5e8973c3d6

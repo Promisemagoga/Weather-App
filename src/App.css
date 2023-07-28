@@ -14,7 +14,7 @@
 .container {
     max-width: 800px;
     margin: auto;
-    height: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -53,13 +53,17 @@
     outline: none;
 }
 
-.section__inputs>button {
+.section__inputs>button, .headingPart> button {
     padding: 10px 50px;
     border: none;
     border-radius: 0.4rem;
     font-size: 20px;
     font-weight: 500;
     background-color: #ffffff;
+}
+
+.headingPart h1{
+font-size: 2rem;
 }
 
 .section__inputs>button:hover {
@@ -90,6 +94,37 @@
     gap: 2.5rem;
 }
 
+.forecastData{
+    margin-top: 15rem;
+    padding: 30px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2.5rem;
+    color: #ffffff;
+}
+
+.headingLeft{
+    display: flex;
+    flex-direction: row;
+   justify-content: space-around;
+}
+
+.forecastData::-webkit-scrollbar{
+    display: none;
+}
+.forcast{
+    color: #ffffff;
+    max-width: 800px;
+    margin: auto;
+    height: 100%;
+}
+
+.forcastIcon{
+    width: 50px;
+}
+
 .card {
     display: flex;
     flex-direction: column;
@@ -114,9 +149,29 @@
     text-transform: capitalize;
 }
 
+.headingPart{
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media only screen and (max-width: 600px) {
     .section__inputs input {
        width: 10rem;
     
     }
+
+    .headingPart h1{
+        font-size: 1rem;
+        }
+
+        .headingPart{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            row-gap: 30px;
+        }
+   
   }
