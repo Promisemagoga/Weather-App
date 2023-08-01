@@ -1,25 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import ForeCast from '../ForecastService'
 import coldbg from "../Assets/cold.webp"
 import hotbg from "../Assets/hot2.jpg"
-import getForecastData from '../ForecastService'
-import getWeatherData from '../WeatherService'
+
 import { FaArrowDown, FaArrowUp, FaLocationArrow, FaLocationDot } from 'react-icons/fa'
 import { BiHappy } from 'react-icons/bi'
 import { MdCompress, MdOutlineWaterDrop } from 'react-icons/md'
 import ForecastDes from './ForecastDes'
-import formattedForecast from '../ForecastService'
-import getFormattedWeatherData from '../ForecastService'
+import getForecastData from '../Services/ForecastService'
 
 export default function Forecast() {
+    const [weather, setWeather] = useState(null)
+    const [searchCity, setSearchCity] = useState("Pretoria")
 
-    
-        const fetchForecast = async() =>{
-            const data = await getFormattedWeatherData( {q: 'Pretoria'})
-            console.log(data)
-            }
-            fetchForecast()
-   
+
+    useEffect(() => {
+        fetchForecast()
+    }, [])
+
+    const fetchForecast = async () => {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const data = await getForecastData(lat, lon)
+                .then((res) => res.json())
+                .then((data) => {
+                    setWeather(data.list)
+                    console.log(data)
+                })
+
+        })
+    }
+    // fetchForecast()
+
 
 
 
@@ -33,10 +45,10 @@ export default function Forecast() {
                         <button >°F</button>
                     </div>
                     <div className='date-time'>
-                   
-                            <p>Tues, 28 july 2023</p>
-                            <p>time: 10:26</p>
-                      
+
+                        <p>Tues, 28 july 2023</p>
+                        <p>time: 10:26</p>
+
                     </div>
                     <div className="section section__temperature">
                         <div className="icon">

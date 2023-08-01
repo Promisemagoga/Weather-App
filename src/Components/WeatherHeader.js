@@ -2,11 +2,12 @@
 
 import coldbg from "../Assets/cold.webp"
 import hotbg from "../Assets/hot2.jpg"
+import getSearchData from "../Services/SearchServices";
+import getWeatherData from "../Services/WeatherService";
 import Description from "./Descriptions";
 import { useEffect, useState } from 'react';
-import getWeatherData from "../WeatherService";
 import { useNavigate } from "react-router-dom";
-import getSearchData from "../SearchServices";
+
 
 function WeatherHeader() {
   const navigate = useNavigate()
@@ -22,16 +23,16 @@ function WeatherHeader() {
     navigator.geolocation.getCurrentPosition(async(position) => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
-      const accuracy = position.coords.accuracy;
+      // const accuracy = position.coords.accuracy;
       console.log(lat, lon);
-      const data = await getWeatherData(lat, lon,accuracy)
+      const data = await getWeatherData(lat, lon,units)
       console.log(data);
       setWeather(data)
       const treshhold = units === 'metric' ? 20 : 60;
           if (data.temp <= treshhold) setBackground(coldbg)
          else setBackground(hotbg)
     });
-  }, []);
+  }, [units]);
 
 
   useEffect(() => {
@@ -44,7 +45,7 @@ function WeatherHeader() {
     };
     fetchdata()
 
-  }, [units, searchCity])
+  }, [ searchCity])
 
   const handleUnitsClick = (event) => {
     const button = event.currentTarget;

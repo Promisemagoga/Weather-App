@@ -4,7 +4,6 @@ import coldbg from "../src/Assets/cold.webp"
 import hotbg from "../src/Assets/hot2.jpg"
 import Description from './Components/Descriptions';
 import { useEffect, useState } from 'react';
-import getWeatherData from './WeatherService';
 import WeatherHeader from './Components/WeatherHeader';
 import {
   BrowserRouter as Router,

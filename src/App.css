@@ -220,6 +220,66 @@ font-size: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    column-gap: 20px;
+}
+
+.news{
+    padding: 20px;
+    background-color:rgba(0,0,0,0.5);
+    background-blend-mode: multiply;
+   background-image: url("./Assets/old-newspaper-350376_640.jpg");
+   background-size: contain;
+}
+
+.news input{
+    margin-bottom: 50px;
+    border: 0.8px solid #ffffff;
+    border-radius: 0.4rem;
+    background-color: transparent;
+    color: #ffffff;
+    padding: 0.5rem;
+    font-size: 20px;
+    font-weight: 200;
+
+}
+
+.articles{
+    display: flex;
+    flex-direction: row-reverse;
+    column-gap: 20px;
+    row-gap: 20px;
+    background-color: rgba(0,0,0,0.7);
+    color: #ffffff;
+    border-radius: 10px;
+
+}
+
+.newsHeader{
+   display: flex;
+   flex-direction: column;
+   row-gap: 10px;
+}
+
+.articleImg{
+    width: 300px;
+}
+
+.newsContent{
+    padding: 20px;
+}
+
+.newsDes{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.newsLink{
+    color: #749BC2;
+}
+
+.news input:focus {
+    outline: none;
 }
 
 @media only screen and (max-width: 600px) {
