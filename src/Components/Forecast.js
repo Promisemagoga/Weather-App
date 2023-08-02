@@ -89,7 +89,7 @@ export default function Forecast() {
                         </div>
                         {/* Bottom description */}
                         {/* <ForecastDes title="hourly forecast" /> */}
-                        <ForecastDes title="daily forecast" />
+                        <ForecastDes units={units} />
 
                         {/* <Description weather={weather} units={units} /> */}
                     </div>

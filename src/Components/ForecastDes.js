@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaCloudRain } from 'react-icons/fa'
 import getForecastData from '../Services/ForecastService'
 import tempImg from "../Assets/cloudy.png";
-function ForecastDes({ title }) {
+function ForecastDes(props) {
     const [forecast, setForecast] = useState([])
     const [weather, setWeather] = useState([])
     useEffect(() => {
@@ -37,13 +37,29 @@ function ForecastDes({ title }) {
         }
         fetchForecast()
     }, [])
-    if(!forecast){
+
+    const units = (value) => {
+        let convert = 0;
+        let str = ""
+        if (props.units === "metric") {
+            convert = value - 273.15;
+            str = `${convert.toFixed()}°C`;
+        } else {
+            convert =  (value - 273.15) * 9/5 + 32
+            str = `${convert.toFixed()}°F`;
+        }
+
+         
+        return str
+        // °${units === 'metric' ? 'C' : 'F'}
+    }
+    if (!forecast) {
         return <div>Loading...</div>
     }
 
     return (
         <div className='forecastA'>
-            <p>{title}</p>
+            <p>daily forecast</p>
 
             <hr className='horizontalLine' />
             <div className='weatherData'>
@@ -51,11 +67,11 @@ function ForecastDes({ title }) {
 
                 {forecast.map((data, index) => (
                     <div className='table-col' key={index}>
-                        <p>{data.value[0].dt_txt }</p>
+                        <p>{data.value[0].dt_txt}</p>
                         <img src={!data.value[3]?.obj ? tempImg : `https://openweathermap.org/img/wn/${data.value[3].obj.weather[0].icon}@2x.png`} alt="" width={!data.value[3]?.obj ? 85 : 100} />
-                        <p>{!data.value[3]?.obj ? "Upcoming" : data.value[3].obj.main.temp.toFixed()}</p>
-                       { console.log(data.value[0].dt_txt)}
-                        
+                        <p>{!data.value[3]?.obj ? "Upcoming" : units(data.value[3].obj.main.temp)}</p>
+                        {console.log(data.value[0].dt_txt)}
+
                     </div>
                 ))}
             </div>
