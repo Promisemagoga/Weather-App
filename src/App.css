@@ -276,6 +276,7 @@ font-size: 2rem;
 
 .newsLink{
     color: #749BC2;
+    font-size: 0.8rem;
 }
 
 .news input:focus {
@@ -313,5 +314,15 @@ font-size: 2rem;
             font-weight: 500;
             background-color: #ffffff;
         }
+
+        .articles{
+            display: flex;
+            flex-direction: column-reverse;
+            column-gap: 20px;
+            row-gap: 20px;
+        
+        }
+
+   
    
   }

@@ -287,4 +287,16 @@ export default formattedForecast
     // }
 
 
-        
+           const fetchForecast = async () => {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const data = await getWeatherData(lat, lon)
+                .then((res) => res.json())
+                .then((data) => {
+                    setWeather(data.list)
+                    console.log(data)
+                })
+
+        })
+    }
