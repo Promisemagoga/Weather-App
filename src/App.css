@@ -139,6 +139,8 @@ font-size: 2rem;
 
 .forecastA{
   width: 100%;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .forecastA p{
